@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Cyclepedia
+        psr4_prefix: Cyclepedia
+        src_path: app

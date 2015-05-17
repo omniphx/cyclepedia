@@ -1,0 +1,83 @@
+<div class="row">
+
+  <div class="col-sm-12">
+
+    <form class="form-inline">
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+      </div>
+      <button type="button" class="btn btn-primary" ng-click="showFilter=!showFilter">Add filter</button>
+    </form>
+
+    <form class="form-inline" ng-show="showFilter">
+
+      <div class="form-group">
+        <label for="field">Field</label>
+        <select class="form-control" id="field" ng-model="filter.field">
+          <option ng-repeat="field in fields">{{ field }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="criteria">Criteria</label>
+        <select class="form-control" id="criteria" ng-model="filter.criterion" ng-options="citerion as citerion.label for citerion in criteria">
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="value">Value</label>
+        <input type="text" class="form-control" id="value" ng-model="filter.value"/>
+      </div>
+
+      <button type="button" class="btn btn-primary" ng-click="addFilter(filter)">Apply</button>
+    </form>
+    
+    <div class="filter-container">
+      <filter filters="filters" remove="removeFilter(filter)"></filter>
+    </div>
+
+    <table class="table table-bordered">
+      <tr>
+        <th>
+          <a href="" ng-click="predicate='name'; reverse=!reverse">
+            NAME  <i class="fa fa-caret-up"></i>
+          </a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate='manufacturer.name'; reverse=!reverse">
+            MANUFACTURER
+          </a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate='subcategory.name'; reverse=!reverse">
+            SUBCATEGORY
+          </a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate='msrp'; reverse=!reverse">
+            PRICE
+          </a>
+        </th>
+        <th>
+          <a href="" ng-click="predicate='rating'; reverse=!reverse">
+            RATING
+          </a>
+        </th>
+      </tr>
+        <tr ng-repeat="component in components | orderBy:predicate:reverse">
+        <!-- <tr ng-repeat="component in components | componentFilter:filters | orderBy:predicate:reverse"> -->
+          <td>{{ component.name }}</td>
+          <td>{{ component.manufacturer.name }}</td>
+          <td>{{ component.subcategory.name }}</td>
+          <td>{{ component.msrp | currency }}</td>
+          <td>{{ component.rating }}</td>
+        </tr>
+      <!-- End of component entry for {{ component.name }} -->
+    </table>
+  </div>
+
+
+</div>

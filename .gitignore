@@ -1,0 +1,15 @@
+/vendor
+/node_modules
+.env*
+/bootstrap/compiled.php
+composer.phar
+composer.lock
+.DS_Store
+Thumbs.db
+/bower_components
+*.mm
+mm.log
+/app/config/local
+/public/assets/styles
+/public/assets/scripts
+/app/database/production.sqlite
